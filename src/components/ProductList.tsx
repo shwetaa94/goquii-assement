@@ -12,8 +12,10 @@ interface Product {
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
   useEffect(() => {
-    axios.get('https://api.unsplash.com/photos?client_id=ACCESS_KEY')
+    axios.get('https://api.unsplash.com/photos?client_id=JdV0PKx6z7BCkR_w8_iZbXYtYnpbcee-tKKYZMgNjM8')
       .then(response => {
         const productData = response.data.map((item: any) => ({
           id: item.id,
@@ -26,12 +28,20 @@ const ProductList: React.FC = () => {
       });
   }, []);
 
- 
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="container mx-auto p-4">
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <input
+        type="text"
+        placeholder="Search products..."
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+        className="mb-4 p-2 border border-gray-300 rounded"
+      />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:grid-col-4">
         {filteredProducts.map(product => (
           <Link to={`/product/${product.id}`} key={product.id}>
             <div className="bg-white p-4 rounded shadow hover:shadow-lg transition">
