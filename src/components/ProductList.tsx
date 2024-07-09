@@ -56,7 +56,7 @@ const ProductList: React.FC = () => {
         onChange={e => setSearchTerm(e.target.value)}
         className="w-full md:w-[60%] mb-4  p-2 border border-gray-300 rounded"
       />
-      <button onClick ={onLogout} className='bg-red-500 text-white h-10 px-4 rounded-md'>logout</button>
+      <button onClick ={onLogout} className='bg-red-500 text-white h-10 px-4 rounded-md clicked'>logout</button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
         {filteredProducts.map(product => (

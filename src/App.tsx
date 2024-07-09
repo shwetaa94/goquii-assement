@@ -7,7 +7,7 @@ import Auth from './components/Auth';
 const App: React.FC = () => {
   console.log(import.meta.env.VITE_apiKey);
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen">
       <Routes>
         <Route path="/" element={<Auth/>} />
         <Route path="/all" element={<ProductList/>} />
