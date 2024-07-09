@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 interface Product {
@@ -11,6 +11,14 @@ interface Product {
 }
 
 const ProductList: React.FC = () => {
+
+  const userData = JSON.parse(localStorage.getItem('user-data') ?? "{}")
+    const navigate = useNavigate();
+    const keys:string[] = Object.keys(userData)
+    if (keys.length===0) {
+      navigate('/')
+    }
+
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -32,10 +40,12 @@ const ProductList: React.FC = () => {
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+
   return (
     <div className="container mx-auto p-4 ">
     <div className='flex flex-col justify-between md:flex-row my-6'>
       <h1 className='text-4xl font-bold mb-4 italic font-serif'>Ecommerce store</h1>
+      
       <input
         type="text"
         placeholder="Search products by name..."

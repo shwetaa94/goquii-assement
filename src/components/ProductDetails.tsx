@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaRegUserCircle } from 'react-icons/fa';
 
@@ -14,6 +14,14 @@ interface Product {
 }
 
 const ProductDetails: React.FC = () => {
+    const userData = JSON.parse(localStorage.getItem('user-data') ?? "{}")
+    const navigate = useNavigate();
+    const keys:string[] = Object.keys(userData)
+    if (keys.length===0) {
+      navigate('/')
+    }
+
+
     const { id } = useParams<{ id: string }>();
     const [product, setProduct] = useState<Product | null>(null);
 
@@ -46,8 +54,8 @@ const ProductDetails: React.FC = () => {
     }
     
     return (
-        <div className="container h-full m-2 sm:m-4 md:m-8 ">
-            <Link to="/" className="bg-blue-500 text-white mb-4 inline-block p-2 rounded-md">Back to List</Link>
+        <div className="container h-full  sm:m-4 md:m-8 ">
+            <Link to="/all" className="bg-blue-500 text-white mb-4 inline-block p-2 rounded-md">Back to List</Link>
             <div className="flex flex-col  md:flex-row bg-white p-8 rounded shadow">
                 <div className='md:w-1/3 flex items-center justify-center bg-gray-100 mr-2 sm:mr-6'>
                 <img src={product.imageUrl} alt={product.name} className=" w-full object-contain mb-4" />
