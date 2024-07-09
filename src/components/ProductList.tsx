@@ -15,14 +15,14 @@ const ProductList: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    axios.get('https://api.unsplash.com/photos?client_id=JdV0PKx6z7BCkR_w8_iZbXYtYnpbcee-tKKYZMgNjM8')
+    axios.get('https://dummyjson.com/products')
       .then(response => {
-        const productData = response.data.map((item: any) => ({
+        const productData = response.data.products.map((item: any) => ({
           id: item.id,
-          name: item.alt_description || 'No name',
-          price: item.likes*20 ,  // given api has no price field so i pick up the likes count 
+          name: item.title || 'No name',
+          price: item.price ,  
           shortDescription: item.description || 'No description',
-          imageUrl: item.urls.thumb,
+          imageUrl: item.thumbnail,
         }));
         setProducts(productData);
       });
@@ -33,26 +33,29 @@ const ProductList: React.FC = () => {
   );
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 ">
+    <div className='flex flex-col justify-between md:flex-row'>
+      <h1 className='text-4xl font-bold mb-4 italic font-serif'>Ecommerce store</h1>
       <input
         type="text"
         placeholder="Search products..."
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
-        className="mb-4 p-2 border border-gray-300 rounded"
+        className="w-full md:w-[50%] mb-4  p-2 border border-gray-300 rounded"
       />
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:grid-col-4">
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {filteredProducts.map(product => (
           <Link to={`/product/${product.id}`} key={product.id}>
-            <div className="bg-white p-4 rounded shadow hover:shadow-lg transition">
+            <div className="h- overflow-hidden bg-white p-6 rounded shadow hover:shadow-lg transition">
               <img src={product.imageUrl} alt={product.name} className="h-48 w-full object-cover mb-4" />
-              <h2 className="text-xl font-bold">{product.name}</h2>
-              <p className="text-gray-700">₹{product.price.toFixed(2)}</p>
-              <p className="text-gray-500">{product.shortDescription}</p>
+              <h2 className="text-xl font-semibold">{product.name}</h2>
+              <p className="text-gray-700 my-1 ">₹{product.price}</p>
+              <p className="text-gray-500 h-[70px] overflow-hidden  ">{product.shortDescription}</p>
             </div>
           </Link>
         ))}
-      </div>
+      </div>  
     </div>
   );
 };
