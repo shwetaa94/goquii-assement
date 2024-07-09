@@ -20,7 +20,7 @@ const ProductList: React.FC = () => {
         const productData = response.data.map((item: any) => ({
           id: item.id,
           name: item.alt_description || 'No name',
-          price: Math.random() * 100,  // Random price for demo as no price is given in the api
+          price: item.likes*20 ,  // given api has no price field so i pick up the likes count 
           shortDescription: item.description || 'No description',
           imageUrl: item.urls.thumb,
         }));
