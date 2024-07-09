@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { FaRegUser } from 'react-icons/fa';
 
 interface Product {
   id: number;
@@ -45,7 +46,7 @@ const ProductList: React.FC = () => {
   }
 
   return (
-    <div className="w-screen h-screen p-4 bg-gray-100 px-6">
+    <div className="w-screen h-screen p-4 bg-blue-50 px-6">
     <div className='flex flex-col justify-around md:flex-row md: my-6 border-b-2'>
       <h1 className='text-4xl font-bold mb-4 italic font-serif'>Ecommerce store</h1>
       
@@ -56,6 +57,7 @@ const ProductList: React.FC = () => {
         onChange={e => setSearchTerm(e.target.value)}
         className="w-full md:w-[60%] mb-4  p-2 border border-gray-300 rounded"
       />
+      <Link to={'/profile'} className='h-12 w-12 bg-blue-400 flex items-center justify-center rounded-full p-2 clicked'><FaRegUser className='text-3xl text-white'/></Link>
       <button onClick ={onLogout} className='w-24 bg-red-500 text-white h-11 px-4 rounded-md clicked d'>logout</button>
       </div>
       <div className="md:mx-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">

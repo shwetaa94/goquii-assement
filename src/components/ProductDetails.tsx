@@ -55,8 +55,8 @@ const ProductDetails: React.FC = () => {
     }
     
     return (
-        <div className="h-screen  px-6 sm:p-4 md:p-8 bg-gray-100">
-            <Link to="/all" className="my-8  bg-blue-600 text-white mb-4 inline-block p-3 rounded-md clicked"><span className='flex items-center'><MdOutlineArrowBack className='text-xl mr-2'/> Back </span></Link>
+        <div className="h-screen  px-6 sm:p-4 md:p-8 bg-blue-50">
+            <Link to="/all" className="my-8  bg-blue-500 text-white mb-4 inline-block p-3 rounded-md clicked"><span className='flex items-center'><MdOutlineArrowBack className='text-xl mr-2'/> Back </span></Link>
             <div className="flex flex-col  md:flex-row bg-white p-8 rounded shadow">
                 <div className='md:w-1/3 flex items-center justify-center bg-gray-100 mr-2 sm:mr-6'>
                 <img src={product.imageUrl} alt={product.name} className=" w-full object-contain mb-4" />
