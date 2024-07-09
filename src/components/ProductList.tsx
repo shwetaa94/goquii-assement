@@ -45,8 +45,8 @@ const ProductList: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto p-4 ">
-    <div className='flex flex-col justify-between md:flex-row my-6'>
+    <div className="w-screen h-screen p-4 bg-gray-100 px-6">
+    <div className='flex flex-col justify-around md:flex-row md: my-6 border-b-2'>
       <h1 className='text-4xl font-bold mb-4 italic font-serif'>Ecommerce store</h1>
       
       <input
@@ -56,15 +56,17 @@ const ProductList: React.FC = () => {
         onChange={e => setSearchTerm(e.target.value)}
         className="w-full md:w-[60%] mb-4  p-2 border border-gray-300 rounded"
       />
-      <button onClick ={onLogout} className='bg-red-500 text-white h-10 px-4 rounded-md clicked'>logout</button>
+      <button onClick ={onLogout} className='w-24 bg-red-500 text-white h-11 px-4 rounded-md clicked d'>logout</button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
+      <div className="md:mx-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {filteredProducts.map(product => (
           <Link to={`/product/${product.id}`} key={product.id}>
-            <div className="h- overflow-hidden bg-white p-6 rounded shadow hover:shadow-lg transition">
-              <img src={product.imageUrl} alt={product.name} className="h-48 w-full object-cover mb-4 bg-gray-100" />
+            <div className=" overflow-hidden bg-white p-6 rounded shadow hover:shadow-lg transition">
+              <div className='object-cover w-full flex justify-center bg-gray-100'>
+              <img src={product.imageUrl} alt={product.name} className="w-[80%] px-8  object-cover mb-4 " />
+              </div>
               <h2 className="text-xl font-semibold">{product.name}</h2>
-              <p className="text-gray-700 my-1 ">₹{product.price}</p>
+              <p className="my-1 text-blue-600 italic">₹{product.price}</p>
               <p className="text-gray-500 h-[70px] overflow-hidden  ">{product.shortDescription}</p>
             </div>
           </Link>
