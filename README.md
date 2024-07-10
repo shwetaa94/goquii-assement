@@ -8,7 +8,7 @@ Here's a sample README for your e-commerce SPA project using Vite, React, TypeSc
 
 This project is a single-page application (SPA) for an e-commerce platform built using React with TypeScript, styled with Tailwind CSS, and utilizing Recoil for advanced state management.
 
-# Live Link:
+# Live Link: https://goqii-ecommerce.netlify.app/
 
 ## Features
 
