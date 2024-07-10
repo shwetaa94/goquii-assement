@@ -19,7 +19,7 @@ const ProductList: React.FC = () => {
     if (keys.length===0) {
       navigate('/')
     }
-
+console.log(userData);
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -47,7 +47,7 @@ const ProductList: React.FC = () => {
 
   return (
     <div className="w-screen h-screen p-4 bg-blue-50 px-6">
-    <div className='flex flex-col justify-around md:flex-row md: my-6 border-b-2'>
+    <div className='flex flex-col justify-around items-center md:flex-row md: my-6 border-b-2'>
       <h1 className='text-4xl font-bold mb-4 italic font-serif'>Ecommerce store</h1>
       
       <input
@@ -57,8 +57,17 @@ const ProductList: React.FC = () => {
         onChange={e => setSearchTerm(e.target.value)}
         className="w-full md:w-[60%] mb-4  p-2 border border-gray-300 rounded"
       />
-      <Link to={'/profile'} className='h-12 w-12 bg-blue-400 flex items-center justify-center rounded-full p-2 clicked'><FaRegUser className='text-3xl text-white'/></Link>
+      <div className='flex justify-between w-full md:w-auto md:gap-6'>
+      <div className='flex justify-center items-center'>
+      <img src={userData.photoURL} alt="" className='h-14 w-14 rounded-full p-2'/>
+      <div className='flex flex-col'>
+      <p> Welcome!</p>
+      <p className='font-semibold'>{userData.displayName}</p>
+      </div>
+      </div>
+
       <button onClick ={onLogout} className='w-24 bg-red-500 text-white h-11 px-4 rounded-md clicked d'>logout</button>
+      </div>
       </div>
       <div className="md:mx-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {filteredProducts.map(product => (
