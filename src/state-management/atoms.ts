@@ -35,10 +35,23 @@ export const fetchProductList = selectorFamily<Product[], void>({
 // Selector for individual product by ID
 export const fetchProductById = selectorFamily<Product | undefined, number>({
   key: "fetchProductById",
-  get:
-    (productId: number) =>
-    ({ get }) => {
-      const productList = get(productListState);
-      return productList.find((p) => p.id === productId);
-    },
+  get: (productId: number) => async () => {
+    try {
+      const response = await axios.get(`https://dummyjson.com/products/${productId}`);
+      const item = response.data;
+      const productData ={
+        id: item.id,
+        name: item.title || "No name",
+        price: item.price,
+        shortDescription: item.description || "No description",
+        imageUrl: item.thumbnail,
+        category: item.category,
+        reviews: item.reviews,
+      };
+      return productData;
+    } catch (error) {
+      console.error("Error fetching product list:", error);
+      return [];
+    }
+  },
 });
