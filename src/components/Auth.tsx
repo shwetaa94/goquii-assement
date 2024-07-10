@@ -23,8 +23,8 @@ const Auth = () => {
   }
   return (
 
-    <div className='w-screen h-screen flex flex-col md:flex-row md:gap-14 dark:bg-gray-800 md:p-24 '>
-      <div className="flex flex-col items-center justify-center h-full">
+    <div className='w-screen h-screen flex flex- justify-center md:flex-row md:gap-14 dark:bg-gray-800 md:p-24 '>
+      <div className="flex flex-col items-center justify-center h-full -mt-32 ">
 
         <h1 className='text-4xl text-white mb-6 font-bold'> E-commerce Store  </h1>
         <p className="text-center text-gray-300 mb-4 max-w-md">
