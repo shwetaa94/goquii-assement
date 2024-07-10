@@ -15,7 +15,7 @@ const ProductDetails: React.FC = () => {
   }
 
   const { id } = useParams<{ id: string }>();
-  const productId = parseInt(id, 10);
+  const productId = parseInt(id??'1', 10);
 
   // Fetching product details using Recoil selector
   const productLoadable = useRecoilValueLoadable(fetchProductById(productId));
@@ -78,7 +78,7 @@ const ProductDetails: React.FC = () => {
           <p className="text-gray-700 mb-4">{product.shortDescription}</p>
           <h3 className="text-xl font-bold pb-2 mb-4 border-b">User Reviews</h3>
           <div className="space-y-4">
-            {product.reviews.map((review, index) => (
+            {product.reviews.map((review:any, index:number) => (
               <div key={index} className="border border-gray-300 p-4 rounded">
                 <div className="flex gap-4 items-center">
                   <FaRegUserCircle className="text-2xl text-gray-400" />

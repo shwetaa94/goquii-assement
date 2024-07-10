@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import app from '../firebaseconfig';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Auth = () => {
   const userData = JSON.parse(localStorage.getItem('user-data') ?? "{}")
@@ -18,7 +17,6 @@ const Auth = () => {
   const logGoogleUser = async () => {
     const response = await signInWithGooglePopup();
     localStorage.setItem('user-data', JSON.stringify(response.user));
-    console.log(response.user);
     navigate('/all')
   }
   return (

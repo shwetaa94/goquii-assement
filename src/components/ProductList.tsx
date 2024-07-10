@@ -35,7 +35,7 @@ const ProductList: React.FC = () => {
 
   const products = useRecoilValue(productListState);
   const [searchTerm, setSearchTerm] = useState("");
-  const productListLoadable = useRecoilValueLoadable(fetchProductList());
+  const productListLoadable = useRecoilValueLoadable(fetchProductList([]));
   const setProductListState = useSetRecoilState(productListState);
 
 
